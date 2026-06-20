@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ ai_name }} — Voice Assistant</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+  <div class="app">
+    <div class="status" id="status">Click the orb to start</div>
+
+    <div class="orb-wrap">
+      <canvas id="orbCanvas" width="320" height="320"></canvas>
+    </div>
+
+    <canvas id="waveCanvas" width="640" height="80" class="wave"></canvas>
+
+    <div class="caption" id="caption"></div>
+
+    <div class="input-row">
+      <input type="text" id="textInput" placeholder="Type a command and press Enter…" autocomplete="off" />
+      <button id="sendBtn">Send</button>
+      <button id="micBtn" title="Hold to talk">🎤</button>
+    </div>
+
+    <div class="hint" id="browserHint"></div>
+
+    <details class="log-wrap">
+      <summary>Log</summary>
+      <div id="log" class="log"></div>
+    </details>
+  </div>
+
+  <script>
+    window.WAKE_WORDS = {{ wake_words | tojson }};
+    window.AI_NAME = {{ ai_name | tojson }};
+  </script>
+  <script src="{{ url_for('static', filename='app.js') }}"></script>
+</body>
+</html>
